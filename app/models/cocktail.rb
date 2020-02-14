@@ -10,6 +10,7 @@ class Cocktail < ApplicationRecord
                    presence: true,
                    allow_blank: false
 
-  attribute :image, :string
+  has_one_attached :image
+
   attribute :instructions, :text
 end
