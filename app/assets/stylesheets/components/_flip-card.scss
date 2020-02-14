@@ -4,6 +4,7 @@
   height: 100%;
   transition: 0.5s;
   transform-style: preserve-3d;
+  height: fit-content;
 
   &.is-flipped {
     transform: rotateY(-180deg);
@@ -13,13 +14,13 @@
 
 .flip-card {
   backface-visibility: hidden;
+  height: fit-content;
 }
 
 .flip-container .flip-front {
   padding: 8px 16px;
   margin: 8px;
   background: white;
-  height: fit-content;
   display: block;
 }
 
@@ -37,5 +38,4 @@
   margin: 8px;
   background: white;
   display: block;
-  height: fit-content;
 }
