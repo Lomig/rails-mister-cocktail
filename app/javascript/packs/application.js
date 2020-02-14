@@ -17,5 +17,8 @@ require("channels")
 // const imagePath = (name) => images(name, true)
 
 require("custom/showForm")
+require("custom/starRating")
 
 import 'bootstrap';
+
+initStarRating();

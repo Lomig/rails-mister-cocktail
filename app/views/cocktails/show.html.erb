@@ -7,13 +7,56 @@
 </div>
 
 <div class="container show mt-3">
-  <div class="description">
-    <h2>Instructions</h2>
-    <% if @cocktail.instructions %>
-      <p><%= @cocktail.instructions %></p>
-    <% else %>
-      <p>There is not any instruction yet... Would you like to add you own?</p>
-    <% end %>
+  <div>
+    
+    <div class="description">
+      <h2>Instructions</h2>
+      <% if @cocktail.instructions %>
+        <p><%= @cocktail.instructions %></p>
+      <% else %>
+        <p>There is not any instruction yet... Would you like to add you own?</p>
+      <% end %>
+    </div>
+    
+    <div class="description">
+      <h2>Reviews</h2>
+      <% unless @cocktail.reviews.empty? %>
+        <div class="reviews">
+          <ul>
+            <% @cocktail.reviews.each do |review|%>
+              <li>
+                <div class="rating-stars">
+                  <% review.rating.times do %> 
+                    <div><%= icon("fas", "star") %></div>
+                  <% end %>
+                  <% (5 - review.rating).times do %> 
+                    <div><%= icon("far", "star") %></div>
+                  <% end %>
+                </div>
+                <div>
+                  <%= review.content %>
+                </div>
+              </li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+      <div class="add-review">
+        <h3>Your review...</h3>
+        <div class="stars">
+          <div class="star" id="star1"><%= icon("far", "star") %></div>
+          <div class="star" id="star2"><%= icon("far", "star") %></div>
+          <div class="star" id="star3"><%= icon("far", "star") %></div>
+          <div class="star" id="star4"><%= icon("far", "star") %></div>
+          <div class="star" id="star5"><%= icon("far", "star") %></div>
+        </div>
+        <%= simple_form_for [@cocktail, @review] do |f| %>
+          <%= f.input :content, label: false %>
+          <%= f.input :rating, as: :hidden %>
+          <%= f.submit "Add ingredient" %>
+        <% end %>
+      </div>
+    </div>
   </div>
 
   <div>
@@ -29,7 +72,6 @@
             </li>
           <% end %>
         </ul>
-        <%# <%= link_to "Add Ingredient...", "#Ingredients", id:"show-form" %1> %>
         <div id="button-hide" class="show">
           <button onclick="showIngredientsForm()">Add Ingredient</button>
         </div>
