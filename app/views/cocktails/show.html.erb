@@ -59,8 +59,8 @@
     </div>
   </div>
 
-  <div>
-    <div class="flip-container ingredients" id="flip-ingredients">
+  <div data-controller="ingredient">
+    <div class="flip-container ingredients" id="flip-ingredients" data-target="ingredient.flipContainer">
       <div class=" flip-card flip-front">
         <h2>Ingredients</h2>
         <ul>
@@ -72,8 +72,8 @@
             </li>
           <% end %>
         </ul>
-        <div id="button-hide" class="show">
-          <button onclick="showIngredientsForm()">Add Ingredient</button>
+        <div class = "flip-button" data-action="click->ingredient#showIngredientsForm">
+          <%= icon("fas", "plus") %> ... 
         </div>
       </div>
       <div class="flip-card flip-back">
