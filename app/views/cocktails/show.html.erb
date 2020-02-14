@@ -1,0 +1,48 @@
+<%
+  stub_image = "https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/breakfast.jpg"
+  image = @cocktail.image || stub_image
+%>
+<div class="banner text-center" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(<%= image %>);">
+    <h1><%= @cocktail.name %></h1>
+</div>
+
+<div class="container show mt-3">
+  <div class="description">
+    <h2>Instructions</h2>
+    <% if @cocktail.instructions %>
+      <p><%= @cocktail.instructions %></p>
+    <% else %>
+      <p>There is not any instruction yet... Would you like to add you own?</p>
+    <% end %>
+  </div>
+
+  <div>
+    <div class="flip-container ingredients" id="flip-ingredients">
+      <div class=" flip-card flip-front">
+        <h2>Ingredients</h2>
+        <ul>
+          <% @cocktail.doses.each do |dose| %>
+            <li>
+              <div><%= dose.ingredient.name %></div>
+              <div><%= dose.description %></div>
+              <div><%= link_to icon("fas", "trash"), dose_path(dose), method: :delete, data: {confirm: "Are you sure?"}  %></div>
+            </li>
+          <% end %>
+        </ul>
+        <%# <%= link_to "Add Ingredient...", "#Ingredients", id:"show-form" %1> %>
+        <div id="button-hide" class="show">
+          <button onclick="showIngredientsForm()">Add Ingredient</button>
+        </div>
+      </div>
+      <div class="flip-card flip-back">
+        <h2>Add an Ingredient</h2>
+        <%= simple_form_for [@cocktail, @dose] do |f| %>
+          <%= f.association :ingredient, collection: Ingredient.order(:name) %>
+          <%= f.input :description %>
+          <%= f.submit "Add ingredient" %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+
+</div>

@@ -1,0 +1,15 @@
+<div class="container">
+  <div class="cards">
+    <%
+      stub_image = "https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/breakfast.jpg"
+    %>
+  <% @cocktails.each do |cocktail| %>
+    <% image = cocktail.image || stub_image %>
+    <%= link_to cocktail_path(cocktail) do %>
+      <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(<%= image %>)">
+        <%= cocktail.name %>
+      </div>
+    <% end %>
+    <% end %>
+  </div>
+</div>
