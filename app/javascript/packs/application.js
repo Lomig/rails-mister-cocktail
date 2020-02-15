@@ -8,10 +8,5 @@ require("turbolinks").start();
 require("@rails/activestorage").start();
 require("channels");
 
-require("custom/starRating");
-
 import "bootstrap";
-
-initStarRating();
-
 import "controllers";
