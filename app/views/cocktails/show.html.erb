@@ -83,10 +83,12 @@
           <%= icon("fas", "plus") %> ... 
         </div>
       </div>
-      <div class="flip-card flip-back">
+      <div class="flip-card flip-back" data-controller="select">
         <h2>Add an Ingredient</h2>
         <%= simple_form_for [@cocktail, @dose] do |f| %>
-          <%= f.association :ingredient, collection: Ingredient.order(:name) %>
+          <%= f.association :ingredient, collection: Ingredient.left_outer_joins(:doses).where("doses.cocktail_id IS DISTINCT FROM ?", @cocktail.id).order(:name),
+                                         selected: 1,
+                                         input_html: {data: { target: "select.input" }} %>
           <%= f.input :description %>
           <%= f.submit "Add ingredient" %>
         <% end %>

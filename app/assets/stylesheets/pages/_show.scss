@@ -23,3 +23,8 @@
     padding-right: 4px;
   }
 }
+
+.form-group.select {
+  display: flex;
+  flex-direction: column;
+}
