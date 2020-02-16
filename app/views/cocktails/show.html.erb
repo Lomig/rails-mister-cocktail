@@ -1,6 +1,6 @@
 <%
     stub_image = "https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/breakfast.jpg"
-image = @cocktail.image.attachment ? cl_image_path(@cocktail.image.key) : stub_image
+    image = @cocktail.image.attachment ? cl_image_path(@cocktail.image.key) : stub_image
 %>
 <div class="banner text-center" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(<%= image %>);">
   <h1><%= @cocktail.name %></h1>
@@ -44,17 +44,18 @@ image = @cocktail.image.attachment ? cl_image_path(@cocktail.image.key) : stub_i
       <div class="add-review" data-controller="star-rating">
         <h3>Your review...</h3>
         <div class="stars" data-action="mouseleave->star-rating#showRating">
-          <% stimulus_hooks = {
-            "data-target" => "star-rating.star",
-            "data-action" => "click->star-rating#setRating \
-                              mouseover->star-rating#chooseRating"
-          }
+          <%
+              stimulus_hooks = {
+                "data-target" => "star-rating.star",
+                "data-action" => "click->star-rating#setRating \
+                                 mouseover->star-rating#chooseRating"
+              }
 
-          5.times do |i|
+            5.times do |i|
             stimulus_hooks["data-id"] = i + 1
           %>
-        <div class="star"><%= icon("far", "star", stimulus_hooks) %></div>
-      <% end %>
+            <div class="star"><%= icon("far", "star", stimulus_hooks) %></div>
+          <% end %>
         </div>
         <%= simple_form_for [@cocktail, @review] do |f| %>
           <%= f.input :content, label: false %>
@@ -89,6 +90,10 @@ image = @cocktail.image.attachment ? cl_image_path(@cocktail.image.key) : stub_i
           <%= f.input :description %>
           <%= f.submit "Add ingredient" %>
         <% end %>
+          <div class = "flip-button" data-action="click->ingredient#showIngredientsForm">
+          <%= icon("fas", "undo-alt") %> Go back...
+        </div>
+
       </div>
     </div>
   </div>
