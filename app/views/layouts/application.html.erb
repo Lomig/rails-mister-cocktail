@@ -15,6 +15,12 @@
     <nav class="navbar navbar-expand-lg bg-light navbar-light navbar-lewagon border-bottom">
       <%= link_to "Cocktail sur Rail", root_path, class: "navbar-brand" %>
       <div class="navbar-nav">
+        <form class="form-inline" data-controller="nav-search">
+          <%= label_tag 'search', "Search a cocktail...", class: "label in", data: {target: "nav-search.label"} %>
+          <%= text_field_tag 'search', nil, class: 'form-control mr-sm-2', 'aria-label': "Search", data: {target: "nav-search.field",
+                  action: ""
+          } %>
+        </form> 
         <div class="nav-item">
           <%= link_to "Add Cocktail", new_cocktail_path, class: "nav-link" %>
         </div>

@@ -10,3 +10,20 @@
 .navbar-lewagon .navbar-brand img {
   width: 40px;
 }
+
+.navbar-nav > .form-inline {
+  position: relative;
+}
+
+.label {
+  position: absolute;
+  left: 16px;
+
+  &.in {
+    display: block;
+  }
+
+  &.out {
+    display: none;
+  }
+}
