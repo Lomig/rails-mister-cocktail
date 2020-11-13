@@ -60,7 +60,7 @@
         <%= simple_form_for [@cocktail, @review] do |f| %>
           <%= f.input :content, label: false %>
           <%= f.input :rating, as: :hidden, input_html: { data: { target: "star-rating.form" } } %>
-          <%= f.submit "Add ingredient" %>
+          <%= f.submit "Add review" %>
         <% end %>
       </div>
     </div>
