@@ -92,10 +92,11 @@
           <%= f.association :ingredient, collection: Ingredient.left_outer_joins(:doses).where("doses.cocktail_id IS DISTINCT FROM ?", @cocktail.id).order(:name),
                                          selected: 1,
                                          input_html: {data: { target: "select.input" }} %>
-          <%= f.input :description %>
+          <%= f.input :description, "Dose" %>
           <%= f.submit "Add ingredient" %>
         <% end %>
           <div class = "flip-button" data-action="click->ingredient#showIngredientsForm">
+          <br/>
           <%= icon("fas", "undo-alt") %> Go back...
         </div>
 
