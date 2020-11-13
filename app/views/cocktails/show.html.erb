@@ -26,10 +26,10 @@
             <% @cocktail.reviews.each do |review|%>
               <li>
                 <div class="rating-stars">
-                  <% review.rating.times do %> 
+                  <% review.rating.times do %>
                     <div><%= icon("fas", "star") %></div>
                   <% end %>
-                  <% (5 - review.rating).times do %> 
+                  <% (5 - review.rating).times do %>
                     <div><%= icon("far", "star") %></div>
                   <% end %>
                 </div>
@@ -72,15 +72,18 @@
         <h2>Ingredients</h2>
         <ul>
           <% @cocktail.doses.each do |dose| %>
-            <li>
-              <div><%= dose.ingredient.name %></div>
-              <div><%= dose.description %></div>
-              <div><%= link_to icon("fas", "trash"), dose_path(dose), method: :delete, data: {confirm: "Are you sure?"}  %></div>
-            </li>
+            <div>
+              <%= dose.ingredient.name %> -
+              <%= dose.description %>
+              <%= link_to icon("fas", "trash"),
+                          dose_path(dose),
+                          method: :delete,
+                          data: {confirm: "Are you sure?"}  %>
+            </div>
           <% end %>
         </ul>
         <div class = "flip-button" data-action="click->ingredient#showIngredientsForm">
-          <%= icon("fas", "plus") %> ... 
+          <%= icon("fas", "plus") %> ...
         </div>
       </div>
       <div class="flip-card flip-back" data-controller="select">
